@@ -1,3 +1,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  /* content */
+  /* box */
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */
+}
+
+nav {
+  @apply /* content */
+  /* box */ py-2 border-b-2 border-red-600
+  /* within tags */   flex justify-between;
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */
+}
+
+nav a {
+  @apply /* content */ 
+    /* box */ px-2 border-2 border-white rounded-2xl hover:border-red-600
+    /* within tags */
+    /* conditionals */ 
+    /* time */ transition ease-out duration-500
+    /* contradiction */
+    /* UI */;
+}
+
+nav div {
+  @apply /* content */
+  /* box */ m-1
+  /* within tags */ flex justify-between gap-5;
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */
+}
+
+.nav-selected {
+  @apply /* content */ text-white
+    /* box */ border-2 border-red-600 bg-red-600;
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */
+}
