@@ -7,7 +7,10 @@ function Home() {
 
     const [Friends, setFriends] = useState();
 
-    useEffect(() => { setFriends(DBFriends) }, [DBFriends])
+    useEffect(() => {
+        setFriends(DBFriends);
+    }, [DBFriends]);
+
 
     function deleteButton(event) {
         let document_id = event.target.dataset.id;
@@ -19,7 +22,7 @@ function Home() {
             <h1>Welcome to Friends</h1>
             <section>
                 <h2>List of friends</h2>
-                {Friends ?
+                {(Friends && Friends.length) ?
                     <div className='friends-container'>
                         {Friends.map((element) => {
                             return (

@@ -23,12 +23,12 @@ function NewFriend() {
     <div id="NewFriend" className="content">
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlfor="fullName">Full Name</label>
+          <label htmlFor="fullName">Full Name</label>
           <input type="text" name="fullName" required />
         </div>
 
         <div>
-          <label htmlfor="specific">Specific</label>
+          <label htmlFor="specific">Specific</label>
           <input type="text" name="specific" required />
         </div>
 

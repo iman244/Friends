@@ -15,8 +15,8 @@ function App({ Friends }) {
     
     <FirebaseBackendProvider>
     
-    
       <Nav />
+
       <Switch>
 
         <Route path='/login'>
@@ -39,6 +39,7 @@ function App({ Friends }) {
           </Route>
 
       </Switch>
+      
       <Footer />
       
       

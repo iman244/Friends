@@ -30,12 +30,12 @@ function Login() {
       <form onSubmit={handleSubmit}>
         <div>
           <div className="error">example error</div>
-          <label htmlfor="Email">Email</label>
+          <label htmlFor="Email">Email</label>
           <input type="text" name="Email" required />
         </div>
 
         <div>
-          <label htmlfor="Password">Password</label>
+          <label htmlFor="Password">Password</label>
           <input type="password" name="Password" required />
         </div>
 

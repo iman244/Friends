@@ -56,10 +56,20 @@ nav a {
   @apply /* content */ 
     /* box */ px-3 py-1 border-2 border-white rounded-md hover:border-red-500
     /* within tags */
-    /* conditionals */ 
+    /* conditionals */ hidden sm:block
     /* time */ transition ease-out duration-300
     /* contradiction */
     /* UI */;
+}
+
+nav a[href="/"] {
+  @apply /* content */ 
+  /* box */
+  /* within tags */
+  /* conditionals */ block
+  /* time */ 
+  /* contradiction */
+  /* UI */;
 }
 
 nav div {
@@ -72,6 +82,16 @@ nav div {
   /* UI */
 }
 
+nav button {
+  @apply /* content */
+  /* box */
+  /* within tags */
+  /* conditionals */ block sm:hidden
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
 .nav-selected {
   @apply /* content */ text-white
     /* box */ border-2 bg-red-500 hover:bg-red-400 border-red-500 hover:border-red-400  shadow-md
@@ -82,9 +102,39 @@ nav div {
   /* UI */;
 }
 
+.nav-sm {
+  @apply /* content */ text-base font-semibold text-slate-900
+    /* box */ fixed top-4 right-4 w-full max-w-xs p-6 bg-white rounded-lg shadow-lg
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+.nav-sm button {
+  @apply /* content */ text-slate-500 hover:text-slate-600
+    /* box */ absolute top-5 right-5 w-8 h-8 items-center justify-center
+  /* within tags */ flex
+  /* conditionals */ 
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+.nav-sm a {
+  @apply /* content */ hover:text-red-500
+  /* box */
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
 a[href="/signUp"] {
   @apply /* content */ hover:text-white
-  /* box */ border-2 border-red-500 hover:bg-red-500
+  /* box */ px-3 py-1  border-2 border-red-500 hover:bg-red-500 rounded-md
   /* within tags */
   /* conditionals */
   /* time */ transition ease-out duration-300
