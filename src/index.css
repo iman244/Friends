@@ -2,19 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  /* content */
-  /* box */
+html {
+  @apply /* content */
+  /* box */ h-full
   /* within tags */
   /* conditionals */
   /* time */
   /* contradiction */
-  /* UI */
+  /* UI */;
+}
+
+body {
+  @apply /* content */
+  /* box */ h-full
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+#root {
+  @apply /* content */
+  /* box */ h-full
+  /* within tags */ flex flex-col  items-center
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+.content {
+  @apply /* content */
+  /* box */ h-5/6
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
 }
 
 nav {
   @apply /* content */
-  /* box */ py-2 border-b-2 border-red-600
+  /* box */ w-3/4 py-2 border-b-2 border-red-500
   /* within tags */   flex justify-between;
   /* conditionals */
   /* time */
@@ -24,10 +54,10 @@ nav {
 
 nav a {
   @apply /* content */ 
-    /* box */ px-2 border-2 border-white rounded-2xl hover:border-red-600
+    /* box */ px-3 py-1 border-2 border-white rounded-md hover:border-red-500
     /* within tags */
     /* conditionals */ 
-    /* time */ transition ease-out duration-500
+    /* time */ transition ease-out duration-300
     /* contradiction */
     /* UI */;
 }
@@ -44,10 +74,222 @@ nav div {
 
 .nav-selected {
   @apply /* content */ text-white
-    /* box */ border-2 border-red-600 bg-red-600;
+    /* box */ border-2 bg-red-500 hover:bg-red-400 border-red-500 hover:border-red-400  shadow-md
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+a[href="/signUp"] {
+  @apply /* content */ hover:text-white
+  /* box */ border-2 border-red-500 hover:bg-red-500
+  /* within tags */
+  /* conditionals */
+  /* time */ transition ease-out duration-300
+  /* contradiction */
+  /* UI */;
+}
+
+a[href="/logOut"] {
+  @apply /* content */ hover:text-white
+  /* box */ border-2 border-red-500 hover:bg-red-500
+  /* within tags */
+  /* conditionals */
+  /* time */ transition ease-out duration-300
+  /* contradiction */
+  /* UI */;
+}
+
+nav + * {
+  @apply /* content */ 
+  /* box */ m-4
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+#Home h1 {
+  @apply /* content */ text-4xl font-semibold
+  /* box */ my-4
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+#Home h2 {
+  @apply /* content */ text-2xl
+  /* box */ my-2
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+.friends-container {
+  @apply /* content */
+  /* box */
+  /* within tags */ grid grid-cols-5 gap-5
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+.friends-container > div {
+  @apply /* content */
+  /* box */p-2 border-2 border-red-300 shadow-sm hover:shadow-lg rounded-md
+  /* within tags */flex justify-between
+  /* conditionals */
+  /* time */ transition ease-out duration-300
+  /* contradiction */
+  /* UI */;
+}
+
+.friends-container > div > div {
+  @apply /* content */
+  /* box */ w-5/6
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+.friends-container > div > div h4 {
+  @apply /* content */ text-gray-900 font-semibold capitalize 
+  /* box */
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */ truncate
+  /* UI */;
+}
+
+.friends-container > div:hover > div h4 {
+  @apply /* content */ text-red-600 font-bold
+  /* box */
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+.friends-container > div > div p {
+  @apply /* content */ text-gray-400
+  /* box */
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+.friends-container > div > button {
+  @apply /* content */ 
+  /* box */ hidden
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+.friends-container > div:hover > button {
+  @apply /* content */ text-red-500
+  /* box */ block
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+.friends-container > div > button > svg {
+  @apply /* content */ 
+  /* box */ w-5 h-5
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+.friends-container > div > button:hover svg {
+  @apply /* content */ text-red-800
+  /* box */
+  /* within tags */
+  /* conditionals */
+  /* time */ transition ease-out duration-200 transform scale-110
+  /* contradiction */
+  /* UI */;
+}
+
+form {
+  @apply /* content */
+  /* box */ h-1/2
+  /* within tags */ flex flex-col justify-center items-center
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+form * {
+  @apply /* content */
+  /* box */ my-1
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+form > div {
+  @apply /* content */
+  /* box */
+  /* within tags */ flex flex-col justify-between
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+form input {
+  @apply /* content */ text-gray-700 leading-tight
+  /* box */ w-full py-2 px-4 bg-gray-200 focus:bg-white border-2 border-gray-200 rounded focus:border-red-500 
   /* within tags */
   /* conditionals */
   /* time */
   /* contradiction */
   /* UI */
+  focus:outline-none 
+  appearance-none;
+}
+
+form .error {
+  @apply /* content */ text-red-400 italic
+  /* box */ w-fit h-2 mb-2
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+form button {
+  @apply /* content */ text-white font-bold
+  /* box */ py-2 px-4 bg-red-500 hover:bg-red-400 shadow rounded
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
 }

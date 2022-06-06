@@ -1,31 +1,50 @@
+import { useContext, useEffect, useState } from "react";
+import { FirebaseBackend } from "../Context/FirebaseBackend";
+
 function Login() {
-    return (
-        <div className="content">
-            <form className="FriendPost-form" action="/login" method="GET">
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
-                <div className="flex-items">
-                    <div className="error errorLogin"></div>
-                    <div className="form-InputsDiv">
-                        <label htmlfor="Email">Email</label>
-                        <input type="text" name="Email" required />
-                    </div>
-                </div>
+  const { auth_signInWithEmailAndPassword } = useContext(FirebaseBackend);
 
-                <div className="flex-items">
-                    <div className="form-InputsDiv">
-                        <label htmlfor="Password">Password</label>
-                        <input type="password" name="Password" required />
-                    </div>
-                </div>
+  useEffect(() => {
+    if (email && password) {
+      auth_signInWithEmailAndPassword(email, password);
+    }
+  }, [email, password]);
 
-                <div className="flex-items">
-                    <div className="form-InputsDiv">
-                        <button className="form-InputsDiv-submitButton">Login</button>
-                    </div>
-                </div>
-            </form>
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    let email = event.target.Email.value;
+    let password = event.target.Password.value;
+
+    setEmail(email);
+    setPassword(password);
+
+    event.target.reset();
+  }
+
+  return (
+    <div id="Login" className="content">
+      <form onSubmit={handleSubmit}>
+        <div>
+          <div className="error">example error</div>
+          <label htmlfor="Email">Email</label>
+          <input type="text" name="Email" required />
         </div>
-    )
+
+        <div>
+          <label htmlfor="Password">Password</label>
+          <input type="password" name="Password" required />
+        </div>
+
+        <div>
+          <button className="form-InputsDiv-submitButton">Login</button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default Login;

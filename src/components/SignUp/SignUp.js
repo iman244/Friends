@@ -1,34 +1,53 @@
 // import './SignUp.css';
 
+import { useContext, useEffect, useState } from "react";
+import { FirebaseBackend } from "../Context/FirebaseBackend";
+
 function SignUp() {
-    return (
-        <div className="content">
-            <form className="FriendPost-form">
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
-                <div className="flex-items">
-                    <div className="form-InputsDiv">
-                        <label htmlfor="Email">Email</label>
-                        <div className="error errorEmail"></div>
-                        <input type="text" name="Email" required />
-                    </div>
-                </div>
+  const { auth_createUserWithEmailAndPassword } = useContext(FirebaseBackend);
 
-                <div className="flex-items">
-                    <div className="form-InputsDiv">
-                        <label htmlfor="Password">Password</label>
-                        <div className="error errorPassword"></div>
-                        <input type="password" name="Password" required />
-                    </div>
-                </div>
+  useEffect(() => {
+    if (email && password) {
+      auth_createUserWithEmailAndPassword(email, password);
+    }
+  }, [email, password]);
 
-                <div className="flex-items">
-                    <div className="form-InputsDiv">
-                        <button className="form-InputsDiv-submitButton">Sign Up</button>
-                    </div>
-                </div>
-            </form>
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    let email = event.target.Email.value;
+    let password = event.target.Password.value;
+
+    setEmail(email);
+    setPassword(password);
+
+    event.target.reset();
+  }
+
+  return (
+    <div id="SignUp" className="content">
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlfor="Email">Email</label>
+          <input type="text" name="Email" required />
+          <div className="error">example error</div>
         </div>
-    )
+
+        <div>
+          <label htmlfor="Password">Password</label>
+          <input type="password" name="Password" required />
+          <div className="error">example error</div>
+        </div>
+
+        <div>
+          <button>Sign Up</button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default SignUp;

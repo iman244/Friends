@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import DBContextProvider from './components/Context/DBContext'
+import FirebaseBackendProvider from './components/Context/FirebaseBackend'
 
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav.js';
@@ -12,7 +12,11 @@ import NewFriend from './components/NewFriend/NewFriend';
 function App({ Friends }) {
   return (
     <BrowserRouter>
-      <Nav user={null} />
+    
+    <FirebaseBackendProvider>
+    
+    
+      <Nav />
       <Switch>
 
         <Route path='/login'>
@@ -23,20 +27,23 @@ function App({ Friends }) {
           <SignUp />
         </Route>
 
-        <DBContextProvider>
+
           <Route path='/newFriend'>
             <NewFriend />
           </Route>
-          {/* </DBContextProvider> */}
+          {/* </FirebaseBackendProvider> */}
 
-          {/* <DBContextProvider> */}
+          {/* <FirebaseBackendProvider> */}
           <Route path='/'>
             <Home />
           </Route>
-        </DBContextProvider>
 
       </Switch>
       <Footer />
+      
+      
+      </FirebaseBackendProvider>
+
     </BrowserRouter>
   );
 }

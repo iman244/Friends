@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FirebaseBackend } from '../Context/FirebaseBackend';
 
 
-function Nav({ user }) {
+function Nav() {
     const [tab, setTab] = useState('/');
 
-    useEffect(() => {
-        setTab(window.location.pathname)
-        let navSelected = document.querySelectorAll(".nav-selected")[0];
-        
+    const {user, auth_signOut} = useContext(FirebaseBackend)
 
-    }, [tab])
+    useEffect(() => {
+
+        setTab(window.location.pathname)
+
+    }, [tab, user])
 
     let ClickModule = (event) => {
         setTab(event.target.attributes.href.value);
@@ -19,21 +21,21 @@ function Nav({ user }) {
     return (
         <nav>
             <div>
-                <Link to='/' className={`nav-item ${tab === '/' ? "nav-selected" : ""}`} onClick={ClickModule}>Home</Link>
-                <Link to='/test' className={`nav-item ${tab === '/test' ? "nav-selected" : ""}`} onClick={ClickModule}>test page</Link>
-                <Link to='/newFriend' className={`nav-item ${tab === '/newFriend' ? "nav-selected" : ""}`} onClick={ClickModule}>New Friend</Link>
+                <Link to='/' className={`${tab === '/' ? "nav-selected" : ""}`} onClick={ClickModule}>Home</Link>
+                <Link to='/test' className={`${tab === '/test' ? "nav-selected" : ""}`} onClick={ClickModule}>test page</Link>
+                <Link to='/newFriend' className={`${tab === '/newFriend' ? "nav-selected" : ""}`} onClick={ClickModule}>New Friend</Link>
             </div>
 
             <div>
                 {user ?
                     <>
-                        <Link to='/profile' className={`nav-item ${tab === '/Profile' ? "nav-selected" : ""}`} onClick={ClickModule}>user.Email</Link>
-                        <Link to='/' className={`nav-item ${tab === '/' ? "nav-selected" : ""}`} onClick={ClickModule}>Log Out</Link>
+                        <Link to='/profile' className={`${tab === '/Profile' ? "nav-selected" : ""}`} onClick={ClickModule}>{user.email}</Link>
+                        <Link to='/logOut' onClick={auth_signOut}>Log Out</Link>
                     </>
                     :
                     <>
-                        <Link to='/login' className={`nav-item ${tab === '/login' ? "nav-selected" : ""}`} onClick={ClickModule}>Log In</Link>
-                        <Link to='/signUp' className={`nav-item ${tab === '/signUp' ? "nav-selected" : ""}`} onClick={ClickModule}>Sign Up</Link>
+                        <Link to='/login' className={`${tab === '/login' ? "nav-selected" : ""}`} onClick={ClickModule}>Log In</Link>
+                        <Link to='/signUp' className={`${tab === '/signUp' ? "nav-selected" : ""}`} onClick={ClickModule}>Sign Up</Link>
                     </>
                 }
             </div>
