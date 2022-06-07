@@ -25,7 +25,17 @@ body {
 #root {
   @apply /* content */
   /* box */ h-full
-  /* within tags */ flex flex-col  items-center
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+footer {
+  @apply /* content */ text-center
+  /* box */ w-full absolute py-4  bottom-0
+  /* within tags */ 
   /* conditionals */
   /* time */
   /* contradiction */
@@ -34,8 +44,8 @@ body {
 
 .content {
   @apply /* content */
-  /* box */ h-5/6
-  /* within tags */
+  /* box */ px-6
+  /* within tags */ 
   /* conditionals */
   /* time */
   /* contradiction */
@@ -44,7 +54,9 @@ body {
 
 nav {
   @apply /* content */
-  /* box */ w-3/4 py-2 border-b-2 border-red-500
+        /* conditionals */
+  /* box */ w-full py-2 border-b-2 border-red-500 mx-auto
+        /* conditionals */ lg:w-3/4 
   /* within tags */   flex justify-between;
   /* conditionals */
   /* time */
@@ -184,9 +196,11 @@ nav + * {
 
 .friends-container {
   @apply /* content */
+        /* conditionals */
   /* box */
-  /* within tags */ grid grid-cols-5 gap-5
-  /* conditionals */
+        /* conditionals */
+  /* within tags */ grid grid-cols-1 gap-5
+      /* conditionals */ sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6
   /* time */
   /* contradiction */
   /* UI */;
@@ -282,9 +296,33 @@ nav + * {
   /* UI */;
 }
 
+.friends-container > :last-child {
+  @apply /* content */
+        /* conditionals */ text-white font-bold text-center
+  /* box */ m-auto px-3 py-1 bg-red-500 border-red-500 shadow-sm rounded-md
+        /* conditionals */ hover:bg-red-400 hover:border-red-400  hover:shadow-lg 
+  /* within tags */
+        /* conditionals */
+  /* time */ 
+  /* contradiction */
+  /* UI */;
+}
+
+.friends-container > :last-child > div * {
+  @apply /* content */
+        /* conditionals */
+  /* box */ inline
+        /* conditionals */ 
+  /* within tags */
+        /* conditionals */
+  /* time */ 
+  /* contradiction */
+  /* UI */;
+}
+
 form {
   @apply /* content */
-  /* box */ h-1/2
+  /* box */ 
   /* within tags */ flex flex-col justify-center items-center
   /* conditionals */
   /* time */

@@ -10,7 +10,7 @@ function Nav() {
 
   useEffect(() => {
     setTab(window.location.pathname);
-  }, [tab, user]);
+  }, [window.location.pathname]);
 
   let ClickModule = (event) => {
     setTab(event.target.attributes.href.value);
@@ -55,7 +55,7 @@ function Nav() {
             <>
               <Link
                 to="/profile"
-                className={`${tab === "/Profile" ? "nav-selected" : ""}`}
+                className={`${tab === "/profile" ? "nav-selected" : ""}`}
                 onClick={ClickModule}
               >
                 {user.email}
