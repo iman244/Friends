@@ -42,11 +42,11 @@ function Nav() {
             Test Page
           </Link>
           <Link
-            to="/newFriend"
-            className={`${tab === "/newFriend" ? "nav-selected" : ""}`}
+            to="/Friends"
+            className={`${tab === "/Friends" ? "nav-selected" : ""}`}
             onClick={ClickModule}
           >
-            New Friend
+            Friends
           </Link>
         </div>
 

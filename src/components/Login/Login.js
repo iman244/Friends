@@ -40,7 +40,7 @@ function Login() {
         </div>
 
         <div>
-          <button className="form-InputsDiv-submitButton">Login</button>
+          <button>Login</button>
         </div>
       </form>
     </div>

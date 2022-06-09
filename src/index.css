@@ -2,39 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  @apply /* content */
-  /* box */ h-full
-  /* within tags */
-  /* conditionals */
-  /* time */
-  /* contradiction */
-  /* UI */;
-}
-
-body {
-  @apply /* content */
-  /* box */ h-full
-  /* within tags */
-  /* conditionals */
-  /* time */
-  /* contradiction */
-  /* UI */;
-}
-
-#root {
-  @apply /* content */
-  /* box */ h-full
-  /* within tags */
-  /* conditionals */
-  /* time */
-  /* contradiction */
-  /* UI */;
-}
 
 footer {
   @apply /* content */ text-center
-  /* box */ w-full absolute py-4  bottom-0
+  /* box */ w-full py-4 
   /* within tags */ 
   /* conditionals */
   /* time */
@@ -44,8 +15,30 @@ footer {
 
 .content {
   @apply /* content */
-  /* box */ px-6
+      /* conditionals */
+  /* box */ w-full m-auto my-6 px-6
+      /* conditionals */ lg:w-3/4
   /* within tags */ 
+  /* conditionals */ 
+  /* time */
+  /* contradiction */ overflow-auto
+  /* UI */;
+}
+
+.content h1 {
+  @apply /* content */ text-4xl font-semibold
+  /* box */ my-4
+  /* within tags */
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
+
+.content h2 {
+  @apply /* content */ text-2xl
+  /* box */ my-2
+  /* within tags */
   /* conditionals */
   /* time */
   /* contradiction */
@@ -167,26 +160,6 @@ a[href="/logOut"] {
 nav + * {
   @apply /* content */ 
   /* box */ m-4
-  /* within tags */
-  /* conditionals */
-  /* time */
-  /* contradiction */
-  /* UI */;
-}
-
-#Home h1 {
-  @apply /* content */ text-4xl font-semibold
-  /* box */ my-4
-  /* within tags */
-  /* conditionals */
-  /* time */
-  /* contradiction */
-  /* UI */;
-}
-
-#Home h2 {
-  @apply /* content */ text-2xl
-  /* box */ my-2
   /* within tags */
   /* conditionals */
   /* time */
@@ -323,7 +296,7 @@ nav + * {
 form {
   @apply /* content */
   /* box */ 
-  /* within tags */ flex flex-col justify-center items-center
+  /* within tags */  flex flex-col justify-center items-center
   /* conditionals */
   /* time */
   /* contradiction */
@@ -342,7 +315,7 @@ form * {
 
 form > div {
   @apply /* content */
-  /* box */
+  /* box */ w-56
   /* within tags */ flex flex-col justify-between
   /* conditionals */
   /* time */
