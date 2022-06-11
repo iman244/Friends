@@ -1,49 +1,68 @@
-// import './SignUp.css';
+import { useState } from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "../Context/FirebaseBackend";
+import { useHistory } from "react-router-dom";
 
-import { useContext, useEffect, useState } from "react";
-import { FirebaseBackend } from "../Context/FirebaseBackend";
 
 function SignUp() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
-  const { auth_createUserWithEmailAndPassword } = useContext(FirebaseBackend);
+  let history = useHistory();
 
-  useEffect(() => {
-    if (email && password) {
-      auth_createUserWithEmailAndPassword(email, password);
-    }
-  }, [email, password]);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
 
-  function handleSubmit(event) {
+    // useEffect(() => {
+
+    // }, [user])
+
+  async function handleSignUp(event) {
     event.preventDefault();
-
-    let email = event.target.Email.value;
-    let password = event.target.Password.value;
-
-    setEmail(email);
-    setPassword(password);
-
-    event.target.reset();
+    await createUserWithEmailAndPassword(email, password);
+    if (user) {
+      history.push("/");
+    }
   }
 
   return (
     <div id="SignUp" className="content">
-      <form onSubmit={handleSubmit}>
+      <form>
         <div>
           <label htmlFor="Email">Email</label>
-          <input type="text" name="Email" required />
+          <input
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+            type="text"
+            name="Email"
+            required
+          />
           <div className="error">example error</div>
         </div>
 
         <div>
           <label htmlFor="Password">Password</label>
-          <input type="password" name="Password" required />
+          <input
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+            type="password"
+            name="Password"
+            required
+          />
           <div className="error">example error</div>
         </div>
 
         <div>
-          <button>Sign Up</button>
+          <button
+            className={`${loading ? "loading" : ""}`}
+            onClick={handleSignUp}
+          >
+            {`${
+              loading ? "loading" : error ? "error happend! retry" : "Sign Up"
+            }`}
+          </button>
         </div>
       </form>
     </div>

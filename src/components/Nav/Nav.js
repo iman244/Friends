@@ -2,11 +2,15 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FirebaseBackend } from "../Context/FirebaseBackend";
 
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../Context/FirebaseBackend";
+
 function Nav() {
   const [tab, setTab] = useState("/");
   const [navsm, setNavsm] = useState("hidden");
 
-  const { user, auth_signOut } = useContext(FirebaseBackend);
+  const { auth_signOut } = useContext(FirebaseBackend);
+  const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
     setTab(window.location.pathname);
@@ -18,8 +22,6 @@ function Nav() {
   };
 
   let NavSm = (event) => {
-    console.dir(event.target);
-    console.log(event.target.dataset);
     setNavsm(event.target.dataset.navsm);
   };
 

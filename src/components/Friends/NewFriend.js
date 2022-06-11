@@ -16,7 +16,7 @@ function NewFriend() {
     collections_Friends_addDoc(document);
 
     event.target.reset();
-    navigate.push("/");
+    navigate.push("/Friends");
   }
 
   return (

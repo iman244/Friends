@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+  @apply /* content */
+  /* box */ bg-red-300 
+  /* within tags */ 
+  /* conditionals */
+  /* time */
+  /* contradiction */
+  /* UI */;
+}
 
 footer {
   @apply /* content */ text-center
@@ -21,7 +30,7 @@ footer {
   /* within tags */ 
   /* conditionals */ 
   /* time */
-  /* contradiction */ overflow-auto
+  /* contradiction */ overflow-visible
   /* UI */;
 }
 
@@ -117,7 +126,18 @@ nav button {
   /* UI */;
 }
 
-.nav-sm button {
+.menu-friend {
+  @apply /* content */ text-base font-semibold text-slate-900
+  /* box */ absolute hidden left-24 top-12 w-fit max-w-xs p-2 bg-white rounded-lg shadow-lg
+/* within tags */
+/* conditionals */
+/* time */
+/* contradiction */
+/* UI */;
+}
+
+.nav-sm button,
+.menu-friend button {
   @apply /* content */ text-slate-500 hover:text-slate-600
     /* box */ absolute top-5 right-5 w-8 h-8 items-center justify-center
   /* within tags */ flex
@@ -127,7 +147,8 @@ nav button {
   /* UI */;
 }
 
-.nav-sm a {
+.nav-sm a,
+.menu-friend a {
   @apply /* content */ hover:text-red-500
   /* box */
   /* within tags */
@@ -135,6 +156,16 @@ nav button {
   /* time */
   /* contradiction */
   /* UI */;
+}
+
+.menu-friend ul {
+  @apply /* content */
+  /* box */ space-y-2
+/* within tags */
+/* conditionals */
+/* time */
+/* contradiction */
+/* UI */;
 }
 
 a[href="/signUp"] {
@@ -173,7 +204,7 @@ nav + * {
   /* box */
         /* conditionals */
   /* within tags */ grid grid-cols-1 gap-5
-      /* conditionals */ sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6
+      /* conditionals */ sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5
   /* time */
   /* contradiction */
   /* UI */;
@@ -181,7 +212,7 @@ nav + * {
 
 .friends-container > div {
   @apply /* content */
-  /* box */p-2 border-2 border-red-300 shadow-sm hover:shadow-lg rounded-md
+  /* box */ relative p-2 border-2 border-red-300 shadow-sm hover:shadow-lg rounded-md
   /* within tags */flex justify-between
   /* conditionals */
   /* time */ transition ease-out duration-300

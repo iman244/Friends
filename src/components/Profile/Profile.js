@@ -1,14 +1,62 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { db } from "../Context/FirebaseBackend";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 
-function Profile() {
+function Profile({ user }) {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
   const [birthDate, setBirthDate] = useState("");
-  const [phonenumber, setPhonenumber] = useState("");
+  const [phoneNumber, setPhonenumber] = useState("");
+  const [profile, loading, error] = useCollection(
+    collection(db, "Users", user.uid, "Profile")
+  );
 
-  function handleProfile(event) {
+  useEffect(() => {
+    LoadProfile();
+  }, [profile]);
+
+  function LoadProfile() {
+    if (loading) {
+      console.log(user.uid);
+      console.log("loading ...");
+    } else if (error) {
+      console.log(error.message);
+    } else if (profile) {
+      profile.forEach((document) => {
+        switch (Object.keys(document.data())[0]) {
+          case "username":
+            setUsername(document.data()["username"]);
+            break;
+          case "bio":
+            setBio(document.data()["bio"]);
+            break;
+          case "birthDate":
+            setBirthDate(document.data()["birthDate"]);
+            break;
+          case "phoneNumber":
+            setPhonenumber(document.data()["phoneNumber"]);
+            break;
+        }
+      });
+    }
+  }
+
+  async function handleProfile(event) {
     event.preventDefault();
+
+    await setDoc(doc(db, "Users", user.uid, "Profile", "username"), {
+      username,
+    });
+    await setDoc(doc(db, "Users", user.uid, "Profile", "bio"), { bio });
+    await setDoc(doc(db, "Users", user.uid, "Profile", "birthDate"), {
+      birthDate,
+    });
+    await setDoc(doc(db, "Users", user.uid, "Profile", "phoneNumber"), {
+      phoneNumber,
+    });
+
+    LoadProfile();
   }
 
   return (
@@ -24,19 +72,6 @@ function Profile() {
               setUsername(event.target.value);
             }}
             value={username}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="Email">Email</label>
-          <div className="error">example error</div>
-          <input
-            name="Email"
-            type="email"
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-            value={email}
           />
         </div>
 
@@ -65,15 +100,15 @@ function Profile() {
         </div>
 
         <div>
-          <label htmlFor="Phonenumber">Phone Number</label>
+          <label htmlFor="phoneNumber">Phone Number</label>
           <div className="error">example error</div>
           <input
-            name="Phonenumber"
+            name="phoneNumber"
             type="tel"
             onChange={(event) => {
               setPhonenumber(event.target.value);
             }}
-            value={phonenumber}
+            value={phoneNumber}
           />
         </div>
 

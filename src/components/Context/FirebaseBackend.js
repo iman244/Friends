@@ -35,8 +35,8 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 // init services
-const db = getFirestore();
-const auth = getAuth();
+export const db = getFirestore();
+export const auth = getAuth();
 
 // collections
 const collections_Friends = collection(db, "Friends");
