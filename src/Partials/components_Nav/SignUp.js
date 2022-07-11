@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "../Context/FirebaseBackend";
+import { auth } from "../../Context/FirebaseBackend";
 import { useHistory } from "react-router-dom";
 
 
@@ -13,16 +13,15 @@ function SignUp() {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
-    // useEffect(() => {
-
-    // }, [user])
+    useEffect(() => {
+      if (user) {
+        history.push("/");
+      }
+    }, [user])
 
   async function handleSignUp(event) {
     event.preventDefault();
     await createUserWithEmailAndPassword(email, password);
-    if (user) {
-      history.push("/");
-    }
   }
 
   return (
@@ -40,7 +39,6 @@ function SignUp() {
           />
           <div className="error">example error</div>
         </div>
-
         <div>
           <label htmlFor="Password">Password</label>
           <input

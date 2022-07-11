@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { FirebaseBackend } from "../Context/FirebaseBackend";
+import { FirebaseBackend } from "../../../Context/FirebaseBackend";
 
 function NewFriend() {
   const navigate = useHistory();

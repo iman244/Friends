@@ -1,15 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FirebaseBackend } from "../Context/FirebaseBackend";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../Context/FirebaseBackend";
+import { signOut } from "firebase/auth";
 
 function Nav() {
   const [tab, setTab] = useState("/");
   const [navsm, setNavsm] = useState("hidden");
-
-  const { auth_signOut } = useContext(FirebaseBackend);
   const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
@@ -62,7 +60,12 @@ function Nav() {
               >
                 {user.email}
               </Link>
-              <Link to="/logOut" onClick={auth_signOut}>
+              <Link
+                to="/logOut"
+                onClick={() => {
+                  signOut(auth);
+                }}
+              >
                 Log Out
               </Link>
             </>
@@ -129,7 +132,7 @@ function Nav() {
           </li>
           <li>
             <Link to="/newFriend" onClick={ClickModule}>
-              New Friend
+              Friends
             </Link>
           </li>
           {user ? (
@@ -140,7 +143,7 @@ function Nav() {
                 </Link>
               </li>
               <li>
-                <Link to="/logout" onClick={auth_signOut}>
+                <Link to="/logout" onClick={signOut}>
                   Log Out
                 </Link>
               </li>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { db } from "../Context/FirebaseBackend";
+import { db } from "../../Context/FirebaseBackend";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 
@@ -55,8 +55,6 @@ function Profile({ user }) {
     await setDoc(doc(db, "Users", user.uid, "Profile", "phoneNumber"), {
       phoneNumber,
     });
-
-    LoadProfile();
   }
 
   return (

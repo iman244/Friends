@@ -1,14 +1,28 @@
 import { Link } from "react-router-dom";
-
-import { db } from "../components/Context/FirebaseBackend";
-import { collection } from "firebase/firestore";
+import { db } from "../../../Context/FirebaseBackend";
+import { collection, query, where } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import SearchContact from "../Materials/SearchContact";
 
 function Friend({ user }) {
-  const [Friends] = useCollection(collection(db, "Users", user.uid, "Friends"));
-  const [navsm, setNavsm] = useState("hidden");
-  const menuFriend = useRef();
+  const [queryFullName, setQueryFullName] = useState("test");
+
+  let collectionFriends = collection(db, "Users", user.uid, "Friends");
+  let queryCollectionFriends = query(
+    collection(db, "Users", user.uid, "Friends"),
+    where("fullName", "==", queryFullName)
+  );
+
+  const [Friends] = useCollection(collectionFriends);
+  const [qFriends] = useCollection(queryCollectionFriends);
+
+  let showingFriends;
+  if (qFriends) {
+    showingFriends = qFriends;
+  } else {
+    showingFriends = Friends;
+  }
 
   let NavSm = (event) => {
     document.getElementById(event.target.dataset.id).style.display = "block";
@@ -35,10 +49,8 @@ function Friend({ user }) {
       !event.target.matches(".menu-friend") &&
       !event.target.matches(".menu")
     ) {
-      console.log("its not menu");
       closeDropdowns();
     } else if (event.target.matches(".menu")) {
-      console.log("its menu");
       closeDropdowns(event.target.dataset.id);
     }
   };
@@ -49,8 +61,9 @@ function Friend({ user }) {
 
   return (
     <>
-      {Friends
-        ? Friends.docs.map((element) => {
+      <SearchContact setQueryFullName={setQueryFullName} />
+      {showingFriends
+        ? showingFriends.docs.map((element) => {
             return (
               <div key={element.id} title={element.data().fullName}>
                 <div>
@@ -74,15 +87,15 @@ function Friend({ user }) {
                     ></path>
                   </svg>
                 </button>
-                <div ref={menuFriend} className={`menu-friend`} id={element.id}>
+                <div className={`menu-friend`} id={element.id}>
                   <ul>
                     <li>
-                      <Link to="/test" onClick={() => {}}>
+                      <Link to="/chat" onClick={() => {}}>
                         Chat
                       </Link>
                     </li>
                     <li>
-                      <Link to="/newFriend" onClick={() => {}}>
+                      <Link to="/deleteFriend" onClick={deleteButton}>
                         Delete Friend
                       </Link>
                     </li>

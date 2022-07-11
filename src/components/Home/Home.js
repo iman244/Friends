@@ -1,7 +1,14 @@
+
+
+
 function Home() {
   return (
     <div id="Home" className="content">
-      <h1>Welcome to Friends</h1>
+      <img src={process.env.PUBLIC_URL + '/f1.jpg'} alt="friends" />
+      <img src={process.env.PUBLIC_URL + '/f1.jpg'} alt="friends" />
+
+      <img src={process.env.PUBLIC_URL + '/f1.jpg'} alt="friends" />
+
     </div>
   );
 }

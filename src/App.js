@@ -1,63 +1,56 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
-import FirebaseBackendProvider, {
-  auth,
-  db,
-} from "./components/Context/FirebaseBackend";
-
-import Footer from "./components/Footer/Footer";
-import Nav from "./components/Nav/Nav.js";
-import Home from "./components/Home/Home";
-import Friends from "./components/Friends/Friends";
-import Login from "./components/Login/Login";
-import SignUp from "./components/SignUp/SignUp";
-import NewFriend from "./components/Friends/NewFriend";
-import Test from "./components/Test/Test";
-import Profile from "./components/Profile/Profile";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { collection } from "firebase/firestore";
+
+import { auth } from "./Context/FirebaseBackend";
+
+import Nav from "./Partials/Nav";
+import Footer from "./Partials/Footer";
+import Login from "./Partials/components_Nav/Login";
+import SignUp from "./Partials/components_Nav/SignUp";
+import Profile from "./Partials/components_Nav/Profile";
+import Friends from "./components/Friends/Friends";
+import NewFriend from "./components/Friends/components_Friends/NewFriend";
+import Home from "./components/Home/Home";
+
+import ChatHandler from "./components/Friends/ChatHandler";
 
 function App() {
   const [user] = useAuthState(auth);
 
   return (
     <BrowserRouter>
-      <FirebaseBackendProvider>
-        <Nav />
+      <Nav />
+      <Switch>
+        <Route path="/Chat">
+          <ChatHandler />
+        </Route>
 
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
 
-          <Route path="/signUp">
-            <SignUp />
-          </Route>
+        <Route path="/signUp">
+          <SignUp />
+        </Route>
 
-          <Route path="/profile">
-            <Profile user={user} />
-          </Route>
+        <Route path="/profile">
+          <Profile user={user} />
+        </Route>
 
-          <Route path="/newFriend">
-            <NewFriend />
-          </Route>
+        <Route path="/newFriend">
+          <NewFriend />
+        </Route>
 
-          <Route path="/Friends">
-            <Friends />
-          </Route>
+        <Route path="/Friends">
+          <Friends />
+        </Route>
 
-          <Route path="/test">
-            <Test />
-          </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
 
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-
-        <Footer />
-      </FirebaseBackendProvider>
+      <Footer />
     </BrowserRouter>
   );
 }

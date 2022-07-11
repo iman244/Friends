@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { auth } from "../Context/FirebaseBackend";
+import { useEffect, useState } from "react";
+import { auth } from "../../Context/FirebaseBackend";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useHistory } from "react-router-dom";
 
@@ -10,13 +10,17 @@ function Login() {
     useSignInWithEmailAndPassword(auth);
   let history = useHistory();
 
-  async function handleSignIn(event) {
-    event.preventDefault();
-
-    signInWithEmailAndPassword(auth, email, password);
+  useEffect(() => {
     if (user) {
       history.push("/");
     }
+  },[user])
+
+  async function handleSignIn(event) {
+    event.preventDefault();
+
+    signInWithEmailAndPassword(email, password);
+
   }
 
   return (

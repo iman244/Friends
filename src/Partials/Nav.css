@@ -1,0 +1,19 @@
+/*
+@apply /* content */
+/* box */
+/* within tags */
+/* conditionals */
+/* time */
+/* contradiction */
+/* UI */
+
+nav {
+  @apply /* position */ sticky top-0 z-10
+    /* content */ text-white
+    /* box */ h-[70px] bg-black opacity-75
+    /* within tags */ flex justify-between align-middle pr-5 mb-[-70px]
+    /* conditionals */
+    /* time */
+    /* contradiction */
+    /* UI */;
+}
